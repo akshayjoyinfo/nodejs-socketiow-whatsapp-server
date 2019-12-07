@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div class="container" style="margin:10%">
+  <div class="container" style="margin:2%">
     <div class="row">
       <div class="col-sm-6">
         <div class="card">
@@ -38,13 +38,17 @@
             <span class="card-text">
               <div class="alert alert-success" role="alert">
                 <h4 class="alert-heading">Socket Chat Rooms OK</h4>
-                <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit
-                  longer so that you can see how spacing within an alert works with this kind of content.</p>
-                <hr>
-                <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                <div class="form-group">
+                  <label for="chatroomname">Chat Room Name</label>
+                  <input type="email" class="form-control" id="chatroomname" aria-describedby="chatroomnameHelp" placeholder="Enter Chat Room name">
+                  <small id="chatroomnameHelp" class="form-text text-muted">Once you create chat room you can verify client App</small>
+                </div>
+                <button type="button" id="btnChatRooms" class="btn btn-primary">Add Chat Rooms</button>
+                <ul class="chat-rooms-group" style="margin: 5px;">
+                  <!-- <li class="list-group-item list-group-item-primary">This is a primary list group item</li> -->
+                </ul>
               </div>
             </span>
-            <a href="#" class="btn btn-primary">Goto Client App</a>
           </div>
         </div>
       </div>
