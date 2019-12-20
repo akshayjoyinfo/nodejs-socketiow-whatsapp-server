@@ -30,8 +30,29 @@ let io = socketIO(server);
 io.on("connection", (socket)=>{
     console.log("new User got Connected!");
 
+    socket.on('room', function(room){   
+      console.log("Room Connnected "+ JSON.stringify(room));  // take room variable from client side
+      socket.join(room.room) // and join it
+
+      io.sockets.in(room.room).emit('group-message', {      // Emits a status message to the connect room when a socket client is connected
+        type: 'status',
+        text: `${room.username} is now connected`,
+        time: Date.now(),
+        room: room.room,
+      });
+
+      socket.on('group-disconnect', function () {   // Emits a status message to the connected room when a socket client is disconnected
+        io.sockets.in(room.room).emit({ 
+          type: 'status',
+          text: 'disconnected',
+          time: Date.now()
+        });  
+      });
+    });
+
+
     socket.on("chat-rooms-added", function(data){
-      console.log(data);
+      data.channelNameSpace = `${data.channelName}`;      
       io.emit("chat-rooms-pushed", data);
     });
 
